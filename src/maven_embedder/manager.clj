@@ -73,7 +73,7 @@
   ([project]
      (maven-session project (default-options) (settings (default-options)))))
 
-(defn execute
+(defn execute-with-session
   "Execute goals on a project. Goals is a sequence of goal names as strings."
   ([project goals maven-session]
      (let [exec-plan (maven/calculate-execution-plan
@@ -82,11 +82,17 @@
        (doseq [exec (.getMojoExecutions exec-plan)]
          ;; (maven/setup-execution plexus maven-session project exec)
          (maven/execute (plexus-container) maven-session exec))
-       (.. maven-session getResult getExceptions)))
+       (.. maven-session getResult getExceptions))))
+
+(defn execute
+  "Execute goals on a project. Goals is a sequence of goal names as strings."
   ([project goals options settings]
-     (execute project goals (maven-session project options settings)))
+     (execute-with-session
+       project goals (maven-session project options settings)))
+  ([project goals options]
+     (execute project goals options (settings options)))
   ([project goals]
-     (execute project goals (default-options) (settings (default-options)))))
+     (execute project goals (default-options))))
 
 (comment
   (execute (project) ["test"])
