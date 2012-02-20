@@ -15,6 +15,7 @@
    java.util.Properties
    org.apache.maven.Maven
    org.apache.maven.cli.MavenCli
+   org.apache.maven.execution.MavenExecutionRequest
    org.apache.maven.repository.RepositorySystem
    org.apache.maven.settings.Settings
    [org.apache.maven.settings.building
@@ -33,8 +34,8 @@
     MojoExecution BuildPluginManager]
    [org.apache.maven.project
     MavenProject ProjectBuilder]
-   org.sonatype.aether.RepositorySystemSession))
-
+   org.sonatype.aether.RepositorySystemSession
+   org.codehaus.plexus.logging.Logger))
 
 (defn settings [container {:keys [global-settings user-settings maven-home]}]
   (try
@@ -78,18 +79,23 @@
       (createLocalRepository (io/file (local-repository-path settings)))))
 
 (defn execution-request
-  [container settings {:keys [offline] :or {offline false} :as options}]
+  [container settings {:keys [offline log-level]
+                       :or {offline false
+                            log-level MavenExecutionRequest/LOGGING_LEVEL_INFO}
+                       :as options}]
   (let [request (DefaultMavenExecutionRequest.)
         local-repo (local-repository container settings)]
     (.. (lookup container MavenExecutionRequestPopulator)
         (populateFromSettings request settings))
+    (.. (lookup container Logger) (setThreshold log-level))
     (doto request
       (.setLocalRepository local-repo)
       (.setLocalRepositoryPath (.getBasedir local-repo))
       (.setOffline offline)
       ;;(.setUpdateSnapshots false)
       (.setCacheNotFound true)
-      (.setCacheTransferError true))))
+      (.setCacheTransferError true)
+      (.setLoggingLevel log-level))))
 
 (defn ^RepositorySystemSession repository-session
   [container ^MavenExecutionRequest request]
