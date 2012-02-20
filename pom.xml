@@ -250,6 +250,7 @@
       <artifactId>maven-aether-provider</artifactId>
       <version>${maven.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-embedder</artifactId>
@@ -287,12 +288,6 @@
       <groupId>org.sonatype.aether</groupId>
       <artifactId>aether-connector-wagon</artifactId>
       <version>${aether.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-aether-provider</artifactId>
-      <version>${maven.version}</version>
     </dependency>
 
     <!-- maven wagons -->
