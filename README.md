@@ -2,9 +2,8 @@
 
 Embed maven in your code.
 
-
 ## License
 
-All Rights Reserved.
-
 Copyright 2012 Hugo Duncan, Toni Batchelli.
+
+Distributed under the Eclipse Public License.

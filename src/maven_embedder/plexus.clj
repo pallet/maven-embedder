@@ -10,7 +10,7 @@
    org.codehaus.plexus.classworlds.realm.ClassRealm))
 
 (defn class-realm
-  "build a ClassRealm with all jars from ${maven-home}/lib"
+  "build a class realm with all jars from ${maven-home}/lib"
   ([^File maven-home ^ClassWorld world ^ClassLoader parent-classloader]
      {:pre [maven-home world parent-classloader]}
      (when-not (.exists maven-home)
@@ -31,6 +31,7 @@
       maven-home world (.getContextClassLoader (Thread/currentThread) ))))
 
 (defn class-world
+  "Build a class world."
   []
   (ClassWorld. "plexus.core" (.getClassLoader ClassWorld)))
 
