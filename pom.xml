@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.cloudhoist</groupId>
   <artifactId>maven-embedder</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>maven-embedder</name>
   <description>
@@ -226,7 +226,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <zi.version>0.4.5</zi.version>
-    <clojure.version>1.3.0-lc</clojure.version>
+    <clojure.version>1.3.0</clojure.version>
     <ritz.version>0.2.1</ritz.version>
     <maven.version>3.0.4</maven.version>
     <aether.version>1.13.1</aether.version>
