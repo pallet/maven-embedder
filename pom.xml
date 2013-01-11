@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.cloudhoist</groupId>
   <artifactId>maven-embedder</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
+  <version>0.1.3-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>maven-embedder</name>
   <description>
@@ -198,6 +198,13 @@
       <version>${aether.version}</version>
     </dependency>
 
+    <!-- aether-connector-wagon pulls in the wrong version of this -->
+    <dependency>
+      <groupId>org.apache.maven.wagon</groupId>
+      <artifactId>wagon-provider-api</artifactId>
+      <version>${wagon.version}</version>
+    </dependency>
+
     <!-- maven wagons -->
     <dependency>
       <groupId>org.apache.maven.wagon</groupId>
@@ -212,7 +219,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.maven.wagon</groupId>
-      <artifactId>wagon-http-lightweight</artifactId>
+      <artifactId>wagon-http</artifactId>
       <version>${wagon.version}</version>
       <exclusions>
         <exclusion>
