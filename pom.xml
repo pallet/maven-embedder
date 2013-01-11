@@ -198,6 +198,13 @@
       <version>${aether.version}</version>
     </dependency>
 
+    <!-- aether-connector-wagon pulls in the wrong version of this -->
+    <dependency>
+      <groupId>org.apache.maven.wagon</groupId>
+      <artifactId>wagon-provider-api</artifactId>
+      <version>${wagon.version}</version>
+    </dependency>
+
     <!-- maven wagons -->
     <dependency>
       <groupId>org.apache.maven.wagon</groupId>
